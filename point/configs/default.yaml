@@ -1,0 +1,43 @@
+method: default
+
+data:
+  dataset_class: a
+  dataset:
+    path: /path/toA
+    num_points: 1024
+
+training:
+  out_dir: results/default
+
+  epochs: 3000
+
+  batch_size: 16
+  batch_size_vis: 4
+  batch_size_val: 4
+
+  learning_rate: 0.0001
+
+  initialize_from: null
+  initialization_file_name: model_best.pt
+
+  print_every: 5
+  checkpoint_every: 100
+  validate_every: 10000000
+  visualize_every: 100
+  backup_every: 10000000
+
+model:
+  model_name: equi_contrast
+  encoder_class: sim3_encoder
+  encoder:
+    c_dim: 128
+    backbone_type: vn_pointnet
+    backbone_args:
+      h_dim: 128
+      num_layers: 4
+      knn: 32
+  decoder_class: resnet
+  decoder:
+    out_dim: 128
+    h_dim: 128
+    num_layers: 5
